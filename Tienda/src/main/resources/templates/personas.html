@@ -4,37 +4,71 @@
         <title>Persona</title>
     </head>
     <body>
+        
+        <!-- Esta etiqueta h1 sirve para ponerle un titulo a nuestra tabla
+        
+            En el text le estamos poniendo nuestra "Variable" que se va a 
+            llamar titulo, entonces en el controlador nosotros le devolvemos al
+            front end, un titulo que es ese mismo.En nuestro caso 
+            "Tabla personas"-->
         <h1 th:text="${titulo}"></h1>
+        
         <table class="table table-dark table-striped">
-
-
-
             <thead class="thead-dark">
+                
+                <!-- tr = table row, o sea una fila -->
                 <tr>
+                    <!-- Todas estas son las columnas que tenemos en nuestra
+                    clase persona, ademas de que le agregamos, editar y eliminar
+                    -->
+                    <!-- th = table head, titulos de la tabla-->
                     <th scope="col">Nombre </th>
                     <th scope="col">Apellido 1 </th>
                     <th scope="col">Apellido 2</th>
                     <th scope="col">Email </th>
+                    <th scope="col">Telefono</th>
                     <th scope="col">Pais </th>
                     <th scope="col">Editar </th>
                     <th scope="col">Eliminar </th>
                 </tr>
             </thead>
+            
+            <!-- Aqui comienza el cuerpo de nuestra tabla -->
             <tbody>
+                
+            <!-- Aqui vamos a usar un th:each, puede verse como un for un while
+            (ciclo), decimos que por cada usuario en personas (variable que 
+            obtenemos del controlador) voy hacer una fila donde la informacion
+            va a ser la siguiente: -->
             <th:block th:each="user : ${personas}">
                 <tr>
+                    
+                    <!-- Entonces agregamos un texto que es sustituido, por user 
+                    .getnombre Entonces, en la clase persona en entity tenemos 
+                    un metodo que nos devuelve el nombre de la persona y asi
+                    para las demas de la variables.-->
                     <td th:text="${user.getNombre}"></td>
                     <td th:text="${user.getApellido1}"></td>
                     <td th:text="${user.getApellido2}"></td>
                     <td th:text="${user.getEmail}"></td>
                     <td th:text="${user.getTelefono}"></td>
                     <td th:text="${user.getPais.getPais}"></td>
+                    
+                    <!-- Aqui agregamos un hipervinculo donde le pasamos el 
+                    url que queremos llamar para ejecutar algun metodo
+                    
+                    Basicamente aqui mapeamos el url con el que vamos a hacer
+                    ciertas funciones en nuestro controllador-->
                     <td>
+                        <!-- Este es el metodo editar persona en cual le 
+                        pasabamos un id, etc -->
                         <a th:href="@{/editPersona/{id}(id=${user.getId})}">Edit</a>
                     <td>
                     <td>
+                        <!-- Este es el metodo delete persona en cual le 
+                        pasabamos un id, etc -->
                         <a th:href="@{/delete/{id}(id=${user.getId})}">Delete</a>
-                    </td> <!--comment -->
+                    </td> 
                 </tr>
             </th:block>
         </tbody>

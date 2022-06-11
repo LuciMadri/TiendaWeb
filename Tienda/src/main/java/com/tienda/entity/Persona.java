@@ -1,5 +1,6 @@
 package com.tienda.entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,12 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+//Definimos de que tipo es nuestra clase, en este caso una entidad.
 @Entity
+//Definir la tabla que hay en la bd en este caso se llama personas.
 @Table(name = "personas")
 
-public class Persona {
+//implementamos una interfaz "Serializable"
+public class Persona implements Serializable{
     
+    //Creamos los atributos que asemejen la tabla (persona).
+    
+    //Definimos la llame primaria con @id
     @Id
+    
+    //Con esta valor decimos que nuestra id va a obtener un valor autoincremental.
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
     
@@ -23,11 +32,21 @@ public class Persona {
     private String telefono;
     private String email;
     
+    //Definomos la relacion  de una a muchas
     @ManyToOne
+    
+    //Foreign key
     @JoinColumn (name="paises_id")
     
+    /*Aqui guardamos un objeto de tipo pais porque estamos haciendo una referancia
+    Con un foreign key, el foreign key apunta a otra tabla entonces para obtener el
+    Valor de esa columna esa tabla, ocupamos la referencia*/
+    
+    //Entonces apuntamos a otra entidad en esta caso "Pais"
     private Pais pais;
 
+    
+    //Creamos getters y setters
     public long getId() {
         return id;
     }

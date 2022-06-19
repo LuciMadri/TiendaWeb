@@ -12,13 +12,12 @@ import org.springframework.stereotype.Service;
 //Este implements es una clase implementaria, osea que tiene una
 //o mas interfaces.
 public class PersonaService implements IPersonaService {
-
-    //Se agrega el repositori
     
     //Autowired para hacer inyeccion de dependencias. 
     @Autowired
     //Inyectamos la clase de personaRepository
     private PersonaRepository personaRepository;
+    
     //Aqui nada mas generamos todos los metodos abstractos.
     @Override 
     public List<Persona> getAllPersona() {

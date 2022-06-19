@@ -1,11 +1,15 @@
 package com.tienda.controller;
+import com.tienda.entity.Pais;
 import com.tienda.entity.Persona;
+import com.tienda.service.IPaisService;
 import com.tienda.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -21,6 +25,8 @@ public class PersonaController {
     //El controller utiliza el servicio, en este caso personaService
     private IPersonaService personaService;
     
+    @Autowired
+    private IPaisService paisService;
     /*El GetMapping crea la ruta, entonces al escribir localhost/persona 
     nos ejecuta el metodo
     */
@@ -50,4 +56,33 @@ public class PersonaController {
         return "personas";
     }
     
+    @GetMapping("/personaN")
+    //Nuevo metodo para crear una nueva persona
+    public String crearPersona(Model model){
+        
+        List<Pais> listaPaises = paisService.listCountry();        
+        //Aqui hay que crear unobjeto nuevo para nuestro html
+        model.addAttribute("persona", new Persona());       
+        //Aqui ocupamos jalar algun foreign key de la tabla paises
+        model.addAttribute("paises", listaPaises);
+        return "crear";
+    }
+    
+    @GetMapping("/save")
+    public String guardarPersona(@ModelAttribute Persona persona){
+        //Con esto lo guardo en la bd
+        personaService.savePersona(persona);
+        
+        //Aqui quiero que me redirija a otro get mapping
+        return "redirect:/persona";
+    }
+    
+    @GetMapping("/editPersona/{id}")
+    public String editarPersona(@PathVariable("id") Long idPersona, Model model){
+        Persona persona = personaService.getPersonaById(idPersona);
+        List<Pais> listaPaises = paisService.listCountry();
+        model.addAttribute("personas", persona);
+        model.addAttribute("paises", listaPaises);
+        return "crear";
+    }
 }

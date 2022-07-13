@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Persona</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    </head>
+    <!-- Vamos a remplazar todo lo que este en nuestra etiqueta head,
+        en plantilla que es nuestro folder, /template, donde template 
+        es nuestro archivo html, y en template lo que yo haya llamado head
+        es lo que va a ir ahi dentro-->
+    <head th:replace="plantilla/template::head"></head>
     <body>
-        
+        <!-- Lo que este aqui dentro se va a sustituir por lo que este en
+            header de template, y lo que hay en este header es el nav bar-->
+        <header th:replace="plantilla/template::header"></header>
+
         <!-- Esta etiqueta h1 sirve para ponerle un titulo a nuestra tabla
         
             En el text le estamos poniendo nuestra "Variable" que se va a 
@@ -14,38 +17,39 @@
             front end, un titulo que es ese mismo.En nuestro caso 
             "Tabla personas"-->
         <h1 th:text="${titulo}"></h1>
-        <h1 th:text="{cliente.nombre}"> </h1>
-        
+        <h1 th:text="#{cliente.nombre}"> </h1>
+
         <table class="table table-dark table-striped">
             <thead class="thead-dark">
-                
+
                 <!-- tr = table row, o sea una fila -->
                 <tr>
                     <!-- Todas estas son las columnas que tenemos en nuestra
                     clase persona, ademas de que le agregamos, editar y eliminar
                     -->
                     <!-- th = table head, titulos de la tabla-->
-                    <th scope="col">Nombre </th>
-                    <th scope="col">Apellido 1 </th>
-                    <th scope="col">Apellido 2</th>
-                    <th scope="col">Email </th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Pais </th>
-                    <th scope="col">Editar </th>
-                    <th scope="col">Eliminar </th>
+                    <th scope="col" th:text="#{cliente.nombre}"> </th>
+                    <th scope="col" th:text="#{plantilla.primape}"> </th>
+                    <th scope="col" th:text="#{plantilla.segape}"> </th>
+                    <th scope="col" th:text="#{plantilla.correo}"> </th>
+                    <th scope="col" th:text="#{plantilla.telefono}"> </th>
+                    <th scope="col" th:text="#{plantilla.pais}"> </th>
+                    <th scope="col" th:text="#{plantilla.editar}"> </th>
+                    <th scope="col"> </th>
+                    <th scope="col" th:text="#{plantilla.eliminar}"> </th>
                 </tr>
             </thead>
-            
+
             <!-- Aqui comienza el cuerpo de nuestra tabla -->
             <tbody>
-                
-            <!-- Aqui vamos a usar un th:each, puede verse como un for un while
-            (ciclo), decimos que por cada usuario en personas (variable que 
-            obtenemos del controlador) voy hacer una fila donde la informacion
-            va a ser la siguiente: -->
+
+                <!-- Aqui vamos a usar un th:each, puede verse como un for un while
+                (ciclo), decimos que por cada usuario en personas (variable que 
+                obtenemos del controlador) voy hacer una fila donde la informacion
+                va a ser la siguiente: -->
             <th:block th:each="user : ${personas}">
                 <tr>
-                    
+
                     <!-- Entonces agregamos un texto que es sustituido, por user 
                     .getnombre Entonces, en la clase persona en entity tenemos 
                     un metodo que nos devuelve el nombre de la persona y asi
@@ -56,7 +60,7 @@
                     <td th:text="${user.getEmail}"></td>
                     <td th:text="${user.getTelefono}"></td>
                     <td th:text="${user.getPais.getPais}"></td>
-                    
+
                     <!-- Aqui agregamos un hipervinculo donde le pasamos el 
                     url que queremos llamar para ejecutar algun metodo
                     
@@ -76,4 +80,6 @@
             </th:block>
         </tbody>
     </table>
+        
+    <footer th:replace="plantilla/template::footer"></footer>
 </html>

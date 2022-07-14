@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 //                                         Le pasamos la entidad y el tipo de id
 public interface PersonaRepository extends CrudRepository<Persona,Long>{
-    
+    Persona findByNombre(String nombre);
     /*
         En CrudRepository si damos ctrl click podremos observar todas las 
         opciones que tenemos para nuestra persona repostory

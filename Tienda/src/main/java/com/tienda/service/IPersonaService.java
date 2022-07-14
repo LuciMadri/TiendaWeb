@@ -24,4 +24,6 @@ public interface IPersonaService {
     //Este metodo va a guardar el id y va a buscar el que tenga el mismo
     //y eliminarlo
     public void delete(long id);
+    
+    public Persona findByNombre(String nombre);
 }

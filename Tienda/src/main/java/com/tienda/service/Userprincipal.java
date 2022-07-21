@@ -1,12 +1,14 @@
 package com.tienda.service;
 
 import com.tienda.entity.Persona;
+import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 public class Userprincipal implements UserDetails{
     private Persona persona;
@@ -39,7 +41,7 @@ public class Userprincipal implements UserDetails{
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() { 
         return this.persona.getNombre();
     }
 
@@ -62,6 +64,5 @@ public class Userprincipal implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
-    
     
 }

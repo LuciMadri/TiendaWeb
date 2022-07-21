@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
     <!-- Donde yo vaya a utilizar la palabra head en otros htmls
         Va a ser sustituido por todo el codigo que este en la etiqueta
         Head-->    
@@ -31,10 +32,20 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Pricing</a>
                             </li>
+                             <li sec:authorize="isAuthenticated()" class="nav-item">
+                                <a class="nav-link" href="#" th:href="@{~/profile/index}">Profile</a>
+                            </li>
+                            <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+                                <a class="nav-link" href="#" th:href="@{~/admin/index}">User</a>
+                            </li>
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item">
+                                <a class="nav-link" href="#" th:href="@{~/management/index}">Admin</a>
+                            </li>
                         </ul>
                         <span class="navbar-text">
                             Navbar text with an inline element
                         </span>
+                        
                     </div>
                 </div>
             </nav>

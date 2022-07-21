@@ -16,6 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -42,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
     
     @Bean
-    public AuthenticationSuccessHandler appAuthenticationSuccessHandler() {
+    public AuthenticationSuccessHandler appAuthenticationSuccess(){
         return new AppAuthenticationSuccessHandler();
     }
     
@@ -58,18 +60,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         
         http.authorizeRequests()
-                .antMatchers("/personas", "login")
+                .antMatchers("/persona", "login")
                 .hasRole("ADMIN")
                 .antMatchers("/personaN", "/persona", "/", "login")
                 .hasAnyRole("USER", "VENDOR", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll().defaultSuccessUrl("/personas",true);
+                .loginPage("/login").permitAll().defaultSuccessUrl("/persona",true);
         
                 
     }
     
-            
-            
 }

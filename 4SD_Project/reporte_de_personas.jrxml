@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_de_personas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="7db60821-4dcf-4ba7-bd9d-24a7b57d0bbb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="469"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="519"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
+	<subDataset name="Personas" uuid="2b261dbb-fe65-4e5c-8505-c3603f34e00b">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
+		<parameter name="FechaInicio" class="java.lang.String"/>
+		<parameter name="FechaFin" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT P.id,P.nombre,P.apellido1,P.birth,P.roles, C.pais
+FROM personas P, paises C
+WHERE P.id = C.id AND P.roles = "ADMIN" 
+AND birth BETWEEN  '2000-01-01' AND '2000-01-01' ;]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="id"/>
+			<property name="com.jaspersoft.studio.field.label" value="id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		</field>
+		<field name="apellido1" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+			<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		</field>
+		<field name="birth" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="birth"/>
+			<property name="com.jaspersoft.studio.field.label" value="birth"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		</field>
+		<field name="roles" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="roles"/>
+			<property name="com.jaspersoft.studio.field.label" value="roles"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		</field>
+		<field name="pais" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="pais"/>
+			<property name="com.jaspersoft.studio.field.label" value="pais"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="paises"/>
+		</field>
+	</subDataset>
+	<parameter name="FechaInicio" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT P.id,P.nombre,P.apellido1,P.birth,P.roles, C.pais
+FROM personas P, paises C
+WHERE P.id = C.id AND P.roles = "ADMIN" 
+AND birth BETWEEN  $P{FechaInicio}  AND $P{FechaFin} ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	</field>
+	<field name="birth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="birth"/>
+		<property name="com.jaspersoft.studio.field.label" value="birth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	</field>
+	<field name="roles" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="roles"/>
+		<property name="com.jaspersoft.studio.field.label" value="roles"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	</field>
+	<field name="pais" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pais"/>
+		<property name="com.jaspersoft.studio.field.label" value="pais"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paises"/>
+	</field>
+	<group name="Nombre Group">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="68">
+				<textField>
+					<reportElement x="70" y="10" width="100" height="30" uuid="83081983-9a4a-48cf-828b-0418a4c09434"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="180" y="8" width="100" height="30" uuid="7aa0903d-ebef-43e8-9fd5-9d332497adb1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="290" y="8" width="140" height="30" uuid="5f0bb3ef-2f71-4916-8b32-a231adac3bb6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{apellido1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="550" y="10" width="100" height="30" uuid="ec2f221b-89dc-44e3-9d06-bfc858c0166b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{roles}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="670" y="10" width="100" height="30" uuid="31611876-a924-446e-b9c7-746a9d642ed8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="430" y="8" width="110" height="30" uuid="0ceb64ef-f709-41af-a9d5-66e9eed1f5d0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Cascadia Code" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{birth}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="842" height="79" forecolor="#F2B6E9" uuid="6a41d8cd-1175-4d74-a840-0824cdce67ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Mono" size="26" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Reporte de personas ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="105" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="800" height="50" backcolor="#CBB5F5" uuid="cd710797-938d-4608-a4f2-624480cada4a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="60" y="10" width="100" height="30" uuid="4a3c1cb6-dc00-4e78-805e-adc8b8fa92f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="10" width="100" height="30" uuid="32971b79-b40c-42d2-bdc8-1f24e3d32fc8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="10" width="100" height="30" uuid="d08ef636-4662-437c-af57-8cf5ac2ec0ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="530" y="10" width="100" height="30" uuid="23ced214-2879-4eac-8ee3-02fdc58becac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[ROLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="10" width="100" height="30" uuid="9d1b9622-bef1-4ece-b78f-d0e436725a5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[PAIS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="55" width="800" height="50" backcolor="#AD8FBA" uuid="9119916b-298a-4b10-a059-143703ef7d4f"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="65" width="800" height="30" forecolor="#FFFFFF" uuid="d80edc85-de96-4b39-91f6-f8147a63b661"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="10" width="100" height="30" uuid="e3c49235-70ac-4615-bdb9-9270a476dc7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cascadia Code" size="16"/>
+				</textElement>
+				<text><![CDATA[BIRTH]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="215" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="110" y="10" width="530" height="200" uuid="d247046a-8421-48c0-96b9-6fa18139a374"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report">
+						<datasetRun subDataset="Personas" uuid="d52d46bd-ce80-4ed8-a716-1175d6c25a5c">
+							<datasetParameter name="FechaInicio">
+								<datasetParameterExpression><![CDATA[$P{FechaInicio}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="FechaFin">
+								<datasetParameterExpression><![CDATA[$P{FechaFin}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{roles}]]></keyExpression>
+					<valueExpression><![CDATA[$F{nombre}]]></valueExpression>
+					<labelExpression><![CDATA[$F{nombre}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

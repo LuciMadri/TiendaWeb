@@ -1,0 +1,10 @@
+.content{
+    width: 40em;
+    height: 20em;
+    left: 10em;
+    position: relative;
+    display: inline-block;
+    box-sizing: content-box;
+    
+    
+}

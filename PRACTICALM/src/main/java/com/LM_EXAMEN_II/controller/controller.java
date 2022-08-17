@@ -21,4 +21,10 @@ public class controller {
 
         return "ejemplo";
     }
+    
+    @GetMapping("/home")
+    public String home(Model model) {
+
+        return "home";
+    }
 }
